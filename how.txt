@@ -1,0 +1,2 @@
+make
+./password_manager
