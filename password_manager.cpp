@@ -162,46 +162,6 @@ std::string PasswordManager::suggestPassword() {
     return password;
 }
 
-
-/*std::string PasswordManager::suggestPassword() {
-    const std::string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const std::string lowercase = "abcdefghijklmnopqrstuvwxyz";
-    const std::string digits = "0123456789";
-    const std::string symbols = "!@#$&*+-=.?";
-    const std::string allChars = uppercase + lowercase + digits + symbols;
-    
-    int passwordLength;
-    std::cout << "Enter desired password length (minimum 8 characters): ";
-    std::cin >> passwordLength;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    
-    if (passwordLength < 8) {
-        passwordLength = 8;
-        std::cout << "Password length set to minimum of 8 characters." << std::endl;
-    }
-
-    std::string password;
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, allChars.length() - 1);
-    
-    // Ensure at least one of each character type
-    password += uppercase[dis(gen)];
-    password += lowercase[dis(gen)];
-    password += digits[dis(gen)];
-    password += symbols[dis(gen)];
-    
-    // Fill the rest of the password
-    for (int i = 4; i < passwordLength; ++i) {
-        password += allChars[dis(gen)];
-    }
-    
-    // Shuffle the password
-    std::shuffle(password.begin(), password.end(), gen);
-    
-    return password;
-}*/
-
 void PasswordManager::setupMasterPassword() {
     std::cout << "Set up your master password: ";
     std::string masterPassword = InputUtils::getPasswordInput();
