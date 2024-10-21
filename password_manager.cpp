@@ -73,7 +73,7 @@ void PasswordManager::retrievePassword() {
 void PasswordManager::showAllPasswords() {
     for (const auto& entry : passwords) {
         if (entry.first.first != "MASTER" || entry.first.second != "PASSWORD") {
-            std::cout << "Name: " << entry.first.first << ", ID: " << entry.first.second << ", Password: ***" << std::endl;
+            std::cout << "Name: " << entry.first.first << ", ID: " << entry.first.second << ", Password: ****" << std::endl;
         }
     }
     Logger::log("All passwords displayed");
@@ -143,20 +143,17 @@ std::string PasswordManager::suggestPassword() {
     } while (length < 8);
     
     std::string password;
-    password.reserve(length); // Reserve memory to avoid reallocations
+    password.reserve(length);
     
-    // Ensure the password contains at least one of each character type
     password += lowercase[dis(gen) % lowercase.length()];
     password += uppercase[dis(gen) % uppercase.length()];
     password += digits[dis(gen) % digits.length()];
     password += symbols[dis(gen) % symbols.length()];
     
-    // Fill the rest of the password
     for (int i = 4; i < length; ++i) {
         password += all_chars[dis(gen)];
     }
     
-    // Shuffle the password to randomize the positions of the guaranteed characters
     std::shuffle(password.begin(), password.end(), gen);
     
     return password;

@@ -21,9 +21,7 @@ std::string encrypt(const std::string& plain, const CryptoPP::SecByteBlock& key,
     try {
         std::string encrypted;
         CryptoPP::CBC_Mode<CryptoPP::AES>::Encryption encryptor(key, key.size(), iv);
-        CryptoPP::StringSource(plain, true,
-            new CryptoPP::StreamTransformationFilter(encryptor,
-                new CryptoPP::StringSink(encrypted)
+        CryptoPP::StringSource(plain, true,new CryptoPP::StreamTransformationFilter(encryptor,new CryptoPP::StringSink(encrypted)
             )
         );
         return encrypted;
@@ -40,9 +38,7 @@ std::string decrypt(const std::string& encrypted, const CryptoPP::SecByteBlock& 
     try {
         std::string decrypted;
         CryptoPP::CBC_Mode<CryptoPP::AES>::Decryption decryptor(key, key.size(), iv);
-        CryptoPP::StringSource(encrypted, true,
-            new CryptoPP::StreamTransformationFilter(decryptor,
-                new CryptoPP::StringSink(decrypted)
+        CryptoPP::StringSource(encrypted, true,new CryptoPP::StreamTransformationFilter(decryptor,new CryptoPP::StringSink(decrypted)
             )
         );
         return decrypted;
